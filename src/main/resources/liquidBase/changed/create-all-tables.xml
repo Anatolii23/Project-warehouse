@@ -1,0 +1,56 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="Anatolii" id="create-all-tables">
+        <createTable tableName="employee">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="type" type="varchar(255)"/>
+            <column name="address" type="varchar(255)"/>
+            <column name="salary" type="int"/>
+            <column name="warehouseId" type="bigint"/>
+        </createTable>
+        <createTable tableName="warehouse">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="town" type="varchar(255)"/>
+        </createTable>
+        <createTable tableName="orderOption">
+            <column name="warehouseId" type="bigint"/>
+            <column name="productId" type="bigint"/>
+        </createTable>
+        <createTable tableName="product">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="quantity" type="int"/>
+        </createTable>
+        <createTable tableName="order">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="clientId" type="bigint"/>
+            <column name="productId" type="bigint"/>
+            <column name="status" type="varchar(255)"/>
+            <column name="data" type="Timestamp"/>
+        </createTable>
+        <createTable tableName="client">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="address" type="varchar(255)"/>
+            <column name="creditLimit" type="int"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

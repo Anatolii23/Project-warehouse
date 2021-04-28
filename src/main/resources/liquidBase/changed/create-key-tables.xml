@@ -1,0 +1,41 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="Anatolii" id="create-key-tables">
+        <addForeignKeyConstraint
+                baseTableName="order"
+                baseColumnNames="clientId"
+                constraintName="fk_order_client_id"
+                referencedTableName="client"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="order"
+                baseColumnNames="productId"
+                constraintName="fk_order_product_id"
+                referencedTableName="product"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="orderOption"
+                baseColumnNames="productId"
+                constraintName="fk_orderOption_product_id"
+                referencedTableName="product"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="orderOption"
+                baseColumnNames="warehouseId"
+                constraintName="fk_orderOption_warehouse_id"
+                referencedTableName="warehouse"
+                referencedColumnNames="id"/>
+        <addForeignKeyConstraint
+                baseTableName="employee"
+                baseColumnNames="warehouseId"
+                constraintName="fk_warehouse_employee_id"
+                referencedTableName="warehouse"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,10 @@
+Spring:
+  datasource:
+    url: "jdbc:mysql://localhost:3306/project_warehouse?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false"
+    driverClassName: com.mysql.jdbc.Driver
+    username: softieStudent
+    password: Softie12345
+  jpa:
+    database-platform: "org.hibernate.dialect.MySQL8Dialect"
+  liquibase:
+    change-log: "classpath:/liquidBase/liquibase-changeLog.xml"
