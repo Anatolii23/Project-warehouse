@@ -8,13 +8,13 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet author="Anatolii" id="create-key-tables">
         <addForeignKeyConstraint
-                baseTableName="order"
+                baseTableName="orders"
                 baseColumnNames="clientId"
                 constraintName="fk_order_client_id"
                 referencedTableName="client"
                 referencedColumnNames="id"/>
         <addForeignKeyConstraint
-                baseTableName="order"
+                baseTableName="orders"
                 baseColumnNames="productId"
                 constraintName="fk_order_product_id"
                 referencedTableName="product"

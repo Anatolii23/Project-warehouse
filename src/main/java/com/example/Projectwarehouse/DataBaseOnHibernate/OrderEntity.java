@@ -1,4 +1,36 @@
 package com.example.Projectwarehouse.DataBaseOnHibernate;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
+
+@Table(name = "orders")
+@Entity
+@Getter
+@Setter
 public class OrderEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private long id;
+    @Column(name = "status")
+    private String status;
+    @Column(name = "data")
+    private Timestamp data;
+    @ManyToOne
+    @JoinColumn(name = "clientId")
+    private ClientEntity clientEntity;
+    @ManyToOne
+    @JoinColumn(name = "productId")
+    private ProductEntity productEntity;
+
+    public OrderEntity() {
+    }
+
+    public OrderEntity(String status, Timestamp data) {
+        this.status = status;
+        this.data = data;
+    }
 }
