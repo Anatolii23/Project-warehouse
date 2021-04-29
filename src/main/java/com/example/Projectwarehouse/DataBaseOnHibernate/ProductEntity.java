@@ -1,15 +1,14 @@
 package com.example.Projectwarehouse.DataBaseOnHibernate;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Table(name = "product")
 @Entity
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,16 +20,20 @@ public class ProductEntity {
     private int quantity;
     @OneToMany(mappedBy = "productEntity")
     private List<OrderEntity> orderEntityList;
-    @ManyToMany
-    @JoinTable(name = "orderoption",
-            joinColumns = @JoinColumn(name = "warehouseId"),
-            inverseJoinColumns = @JoinColumn(name = "productId"))
+    @ManyToMany(mappedBy = "productEntityList")
     private List<WarehouseEntity> warehouseEntityList;
+
     public ProductEntity(String name, int quantity) {
         this.name = name;
         this.quantity = quantity;
     }
 
-    public ProductEntity() {
+    @Override
+    public String toString() {
+        return "ProductEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", quantity=" + quantity +
+                '}';
     }
 }

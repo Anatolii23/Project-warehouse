@@ -1,15 +1,14 @@
 package com.example.Projectwarehouse.DataBaseOnHibernate;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Table(name = "orders")
 @Entity
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +24,17 @@ public class OrderEntity {
     @ManyToOne
     @JoinColumn(name = "productId")
     private ProductEntity productEntity;
-
-    public OrderEntity() {
-    }
-
     public OrderEntity(String status, Timestamp data) {
         this.status = status;
         this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderEntity{" +
+                "id=" + id +
+                ", status='" + status + '\'' +
+                ", data=" + data +
+                '}';
     }
 }

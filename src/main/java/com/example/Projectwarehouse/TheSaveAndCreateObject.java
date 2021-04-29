@@ -4,29 +4,19 @@ import com.example.Projectwarehouse.DataBaseOnHibernate.*;
 
 import javax.persistence.EntityManager;
 import java.sql.Timestamp;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class TheSaveAndCreateObject {
-    public static void addProductToWarehouse(EntityManager entityManager, List<ProductEntity> products,
-                                             List<WarehouseEntity> warehouses){
-        List<WarehouseEntity> warehouseFirst = warehouses.subList(0,1);
-        List<WarehouseEntity> warehouseSecond = warehouses.subList(1,2);
-        List<ProductEntity> firstProducts = products;
-        List<ProductEntity> secondProducts=products.subList(0,3);
-        warehouseFirst.forEach(warehouseEntity -> warehouseEntity.setProductEntityList(firstProducts));
-        firstProducts.forEach(productEntity -> productEntity.setWarehouseEntityList(warehouseFirst));
-        warehouseSecond.forEach(warehouseEntity -> warehouseEntity.setProductEntityList(secondProducts));
-        secondProducts.forEach(productEntity -> productEntity.setWarehouseEntityList(warehouseSecond));
+    public static void addWarehouseToProduct(EntityManager entityManager, List<ProductEntity> productEntities,
+                                             WarehouseEntity warehouseEntity) {
         entityManager.getTransaction().begin();
-        warehouseFirst.forEach(entityManager::persist);
-        warehouseSecond.forEach(entityManager::persist);
-        firstProducts.forEach(entityManager::persist);
-        secondProducts.forEach(entityManager::persist);
+        entityManager.persist(warehouseEntity);
+        productEntities.forEach(productEntity -> entityManager.persist(productEntity));
         entityManager.getTransaction().commit();
     }
+
     public static  OrderEntity createOrder(EntityManager entityManager, ClientEntity clientEntity, ProductEntity productEntity){
 
       OrderEntity order1=new OrderEntity("InProcess", Timestamp.valueOf("2020-03-02 04:33:17"));

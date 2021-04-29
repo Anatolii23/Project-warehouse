@@ -1,14 +1,12 @@
 package com.example.Projectwarehouse;
 
 import com.example.Projectwarehouse.DataBaseOnHibernate.*;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class ProjectWarehouseApplication {
@@ -25,9 +23,23 @@ public class ProjectWarehouseApplication {
 				.getResultList();
 		List<ClientEntity> clientEntityList = entityManager.createQuery("SELECT c from ClientEntity c", ClientEntity.class)
 				.getResultList();
-		TheSaveAndCreateObject.addProductToWarehouse(entityManager,productEntityList,warehouseEntityList);//Cannot add or update a child row:
-		// a foreign key constraint fails (`project_warehouse`.`orderoption`, CONSTRAINT `fk_orderOption_warehouse_id`
-		// FOREIGN KEY (`warehouseId`) REFERENCES `warehouse` (`id`))
+		List<OrderEntity> orderEntityList = entityManager.createQuery("select o from OrderEntity o", OrderEntity.class)
+				.getResultList();
+//		WarehouseEntity warehouseEntity = warehouseEntityList.get(0);
+//		warehouseEntity.setProductEntityList(productEntityList);
+//		productEntityList.forEach(productEntity -> productEntity.getWarehouseEntityList().add(warehouseEntity));
+//		TheSaveAndCreateObject.addWarehouseToProduct(entityManager,productEntityList,warehouseEntity);
+		System.out.println("\tWszyscy pracownicy");
+		employeeEntityList.forEach(System.out::println);
+		System.out.println("\t wszyscy magazyny");
+		warehouseEntityList.forEach(System.out::println);
+		System.out.println("\t wszyscy producty");
+		productEntityList.forEach(System.out::println);
+		System.out.println("\t wszyscy clienty");
+		clientEntityList.forEach(System.out::println);
+		System.out.println("\t wszyscy zamowienia");
+		orderEntityList.forEach(System.out::println);
+
 		entityManager.close();
 		entityManagerFactory.close();
 	}
