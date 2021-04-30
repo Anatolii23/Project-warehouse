@@ -24,6 +24,7 @@ public class OrderEntity {
     @ManyToOne
     @JoinColumn(name = "productId")
     private ProductEntity productEntity;
+
     public OrderEntity(String status, Timestamp data) {
         this.status = status;
         this.data = data;

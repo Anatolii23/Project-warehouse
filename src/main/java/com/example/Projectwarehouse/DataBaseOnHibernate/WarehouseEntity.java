@@ -25,6 +25,7 @@ public class WarehouseEntity {
     private List<ProductEntity> productEntityList;
     @OneToMany(mappedBy = "warehouseEntity")
     private List<EmployeeEntity> employeeEntityList;
+
     public WarehouseEntity(String name, String town) {
         this.name = name;
         this.town = town;

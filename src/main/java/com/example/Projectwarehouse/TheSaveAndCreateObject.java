@@ -10,18 +10,21 @@ import java.util.List;
 
 public class TheSaveAndCreateObject {
     public static void addWarehouseToProduct(EntityManager entityManager, List<ProductEntity> productEntities,
-                                             WarehouseEntity warehouseEntity) {
+                                             List<WarehouseEntity> warehouseEntityList) {
+        WarehouseEntity warehouseEntity = warehouseEntityList.get(0);
+        warehouseEntity.setProductEntityList(productEntities);
+        productEntities.forEach(productEntity -> productEntity.getWarehouseEntityList().add(warehouseEntity));
         entityManager.getTransaction().begin();
         entityManager.persist(warehouseEntity);
-        productEntities.forEach(productEntity -> entityManager.persist(productEntity));
+        productEntities.forEach(entityManager::persist);
         entityManager.getTransaction().commit();
     }
 
-    public static  OrderEntity createOrder(EntityManager entityManager, ClientEntity clientEntity, ProductEntity productEntity){
+    public static OrderEntity createOrder(EntityManager entityManager, ClientEntity clientEntity, ProductEntity productEntity) {
 
-      OrderEntity order1=new OrderEntity("InProcess", Timestamp.valueOf("2020-03-02 04:33:17"));
-       order1.setProductEntity(productEntity);
-       order1.setClientEntity(clientEntity);
+        OrderEntity order1 = new OrderEntity("InProcess", Timestamp.valueOf("2020-03-02 04:33:17"));
+        order1.setProductEntity(productEntity);
+        order1.setClientEntity(clientEntity);
         entityManager.getTransaction().begin();
         entityManager.persist(order1);
         entityManager.persist(productEntity);
@@ -29,10 +32,11 @@ public class TheSaveAndCreateObject {
         entityManager.getTransaction().commit();
         return order1;
     }
+
     public static void addEmployeeToWarehouse(EntityManager entityManager, List<EmployeeEntity> employees,
                                               List<WarehouseEntity> warehouses) {
         WarehouseEntity firstWarehouse = warehouses.get(0);
-        WarehouseEntity secondWarehouse=warehouses.get(1);
+        WarehouseEntity secondWarehouse = warehouses.get(1);
         List<EmployeeEntity> firstEmployee = employees.subList(0, 3);
         List<EmployeeEntity> secondEmployee = employees.subList(3, 6);
         firstWarehouse.setEmployeeEntityList(new ArrayList<>(firstEmployee));
