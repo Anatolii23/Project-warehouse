@@ -1,5 +1,6 @@
-package com.example.Projectwarehouse.DataBaseOnHibernate;
+package com.example.Projectwarehouse.entity;
 
+import com.example.Projectwarehouse.repositories.StatusRepository;
 import lombok.*;
 
 import javax.persistence.*;
@@ -7,15 +8,19 @@ import java.sql.Timestamp;
 
 @Table(name = "orders")
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
     @Column(name = "status")
-    private String status;
+    private StatusRepository status;
     @Column(name = "data")
     private Timestamp data;
     @ManyToOne
@@ -24,18 +29,4 @@ public class OrderEntity {
     @ManyToOne
     @JoinColumn(name = "productId")
     private ProductEntity productEntity;
-
-    public OrderEntity(String status, Timestamp data) {
-        this.status = status;
-        this.data = data;
-    }
-
-    @Override
-    public String toString() {
-        return "OrderEntity{" +
-                "id=" + id +
-                ", status='" + status + '\'' +
-                ", data=" + data +
-                '}';
-    }
 }

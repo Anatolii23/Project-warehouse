@@ -1,4 +1,4 @@
-package com.example.Projectwarehouse.DataBaseOnHibernate;
+package com.example.Projectwarehouse.entity;
 
 import lombok.*;
 
@@ -7,8 +7,12 @@ import java.util.List;
 
 @Table(name = "warehouse")
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
 public class WarehouseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,27 +20,13 @@ public class WarehouseEntity {
     private long id;
     @Column(name = "name")
     private String name;
-    @Column(name = "town")
-    private String town;
+    @Column(name = "address")
+    private String address;
     @ManyToMany
     @JoinTable(name = "orderoption",
             joinColumns = @JoinColumn(name = "warehouseId"),
             inverseJoinColumns = @JoinColumn(name = "productId"))
     private List<ProductEntity> productEntityList;
-    @OneToMany(mappedBy = "warehouseEntity")
+    @OneToMany(mappedBy = "warehouseEntity" , cascade = CascadeType.ALL)
     private List<EmployeeEntity> employeeEntityList;
-
-    public WarehouseEntity(String name, String town) {
-        this.name = name;
-        this.town = town;
-    }
-
-    @Override
-    public String toString() {
-        return "WarehouseEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", town='" + town + '\'' +
-                '}';
-    }
 }

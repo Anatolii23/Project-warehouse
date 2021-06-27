@@ -8,3 +8,7 @@ Spring:
     database-platform: "org.hibernate.dialect.MySQL8Dialect"
   liquibase:
     change-log: "classpath:/liquidBase/liquibase-changeLog.xml"
+server:
+  error:
+    include-message: always
+    include-binding-errors: always

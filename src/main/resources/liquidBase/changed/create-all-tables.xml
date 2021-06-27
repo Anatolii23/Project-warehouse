@@ -22,7 +22,7 @@
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="varchar(255)"/>
-            <column name="town" type="varchar(255)"/>
+            <column name="address" type="varchar(255)"/>
         </createTable>
         <createTable tableName="orderOption">
             <column name="warehouseId" type="bigint"/>
@@ -50,7 +50,7 @@
             </column>
             <column name="name" type="varchar(255)"/>
             <column name="address" type="varchar(255)"/>
-            <column name="creditLimit" type="int"/>
+            <column name="creditLimit" type="bigint"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>
