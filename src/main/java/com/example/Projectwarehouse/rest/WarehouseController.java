@@ -24,11 +24,11 @@ public class WarehouseController {
     @GetMapping("/findWarehouse")
     @Operation(description = "find warehouse by parameters")
     public List<WarehouseDTO> getWarehouseByParam(@Parameter(description = "id of warehouse")
-                                                  @RequestParam(name = "id") Long id,
+                                                  @RequestParam(name = "id", required = false) Long id,
                                                   @Parameter(description = "name of warehouse")
-                                                  @RequestParam(name = "name") String name,
+                                                  @RequestParam(name = "name",required = false) String name,
                                                   @Parameter(description = "address of warehouse")
-                                                  @RequestParam(name = "address") String address) {
+                                                  @RequestParam(name = "address",required = false) String address) {
         return warehouseServices.findWarehouseByParam(id, name, address);
     }
 

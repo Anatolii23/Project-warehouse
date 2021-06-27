@@ -51,17 +51,17 @@ public class EmployeeController {
     @GetMapping("/getEmployee")
     @Operation(description = "find employee by parametrs")
     public List<EmployeeDTO> getEmployeeByParam(@Parameter(description = "the id of employee whose find")
-                                                @RequestParam(name = "id") Long id,
+                                                @RequestParam(name = "id",required = false) Long id,
                                                 @Parameter(description = "the name of employee whose find")
-                                                @RequestParam(name = "name") String name,
+                                                @RequestParam(name = "name",required = false) String name,
                                                 @Parameter(description = "the type of employee whose find")
-                                                @RequestParam(name = "type") String type,
+                                                @RequestParam(name = "type",required = false) String type,
                                                 @Parameter(description = "the address of employee whose find")
-                                                @RequestParam(name = "address") String address,
+                                                @RequestParam(name = "address",required = false) String address,
                                                 @Parameter(description = "min salary of employee whose find")
-                                                @RequestParam(name = "minSalary") Integer minSalary,
+                                                @RequestParam(name = "minSalary",required = false) Integer minSalary,
                                                 @Parameter(description = "the max salary of employee whose find")
-                                                @RequestParam(name = "maxSalary") Integer maxSalary) {
+                                                @RequestParam(name = "maxSalary",required = false) Integer maxSalary) {
         return employeeServices.findEmployeeByParam(id, name, type, address, minSalary, maxSalary);
     }
 }

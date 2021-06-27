@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Table(name = "warehouse")
+@Table(name = "warehouse", schema = "project_warehouse")
 @Entity
 @Getter
 @Setter
@@ -24,8 +24,8 @@ public class WarehouseEntity {
     private String address;
     @ManyToMany
     @JoinTable(name = "orderoption",
-            joinColumns = @JoinColumn(name = "warehouseId"),
-            inverseJoinColumns = @JoinColumn(name = "productId"))
+            joinColumns = @JoinColumn(name = "warehouseid"),
+            inverseJoinColumns = @JoinColumn(name = "productid"))
     private List<ProductEntity> productEntityList;
     @OneToMany(mappedBy = "warehouseEntity" , cascade = CascadeType.ALL)
     private List<EmployeeEntity> employeeEntityList;

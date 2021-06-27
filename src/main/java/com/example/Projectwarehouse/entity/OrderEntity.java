@@ -6,7 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Table(name = "orders")
+@Table(name = "orders", schema = "project_warehouse")
 @Entity
 @Getter
 @Setter
@@ -24,9 +24,9 @@ public class OrderEntity {
     @Column(name = "data")
     private Timestamp data;
     @ManyToOne
-    @JoinColumn(name = "clientId")
+    @JoinColumn(name = "clientid")
     private ClientEntity clientEntity;
     @ManyToOne
-    @JoinColumn(name = "productId")
+    @JoinColumn(name = "productid")
     private ProductEntity productEntity;
 }

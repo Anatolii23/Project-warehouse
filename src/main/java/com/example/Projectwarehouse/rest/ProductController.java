@@ -32,7 +32,7 @@ public class ProductController {
     @DeleteMapping("/deleteProduct")
     @Operation(description = "remove product")
     public ResponseEntity<ProductDTO> deleteProduct(@Parameter(description = "id of product whose you delete")
-                              @RequestParam(name = "clientId") Long id) {
+                              @RequestParam(name = "productId") Long id) {
         productServices.deleteProduct(id);
         return ResponseEntity.ok().build();
     }
@@ -51,11 +51,11 @@ public class ProductController {
     @GetMapping("/findproduct")
     @Operation(description = "find product by parameters")
     public List<ProductDTO> getProductByParam(@Parameter(description = "id of product")
-                                                        @RequestParam(name = "id") Long id,
+                                                        @RequestParam(name = "id",required = false) Long id,
                                               @Parameter(description = "name of product")
-                                                        @RequestParam(name = "name") String name,
+                                                        @RequestParam(name = "name",required = false) String name,
                                               @Parameter(description = "quantity of product")
-                                                        @RequestParam(name = "quantity") Integer quantity) {
+                                                        @RequestParam(name = "quantity",required = false) Integer quantity) {
        return productServices.findProductByParam(id, name, quantity);
 
     }

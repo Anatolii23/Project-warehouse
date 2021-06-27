@@ -1,5 +1,6 @@
 package com.example.Projectwarehouse.rest;
 
+import com.example.Projectwarehouse.entity.ClientEntity;
 import com.example.Projectwarehouse.rest.dto.ClientDTO;
 import com.example.Projectwarehouse.services.ClientServices;
 import io.swagger.v3.oas.annotations.Operation;
@@ -42,9 +43,9 @@ public class ClientController {
     @PreAuthorize("hasRole('" + EMPLOYEE_ROLE + "')")
     @DeleteMapping("/removeclient")
     @Operation(description = "remove client ")
-    private ResponseEntity<ClientDTO> removeClient(@Parameter(description = "client id whose we delete")
+    private ResponseEntity<ClientDTO> removeClient(@Parameter(description = "client id whose you delete")
                               @RequestParam(name = "id") Long id) {
-        services.deleteClientById(id);
+        services.deleteClientById(id); // services is null?
         return  ResponseEntity.ok().build();
     }
 

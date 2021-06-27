@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Table(name = "client")
+@Table(name = "client", schema = "project_warehouse")
 @Entity
 @Getter
 @Setter
@@ -22,7 +22,7 @@ public class ClientEntity {
     private String name;
     @Column(name = "address")
     private String address;
-    @Column(name = "creditLimit")
+    @Column(name = "creditlimit")
     private Double creditLimit;
     @OneToMany(mappedBy = "clientEntity" , cascade = CascadeType.ALL)
     private List<OrderEntity> orderEntityList;

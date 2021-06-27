@@ -4,7 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Table(name = "employee")
+@Table(name = "employee" , schema = "project_warehouse")
 @Entity
 @Getter
 @Setter
@@ -26,6 +26,6 @@ public class EmployeeEntity {
     @Column(name = "salary")
     private int salary;
     @ManyToOne
-    @JoinColumn(name = "warehouseId")
+    @JoinColumn(name = "warehouseid")
     private WarehouseEntity warehouseEntity;
 }

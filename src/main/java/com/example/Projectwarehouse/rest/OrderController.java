@@ -23,7 +23,7 @@ public class OrderController {
     private final OrderServices orderServices;
 
     @PreAuthorize("hasRole('" + USER_ROLE + "')")
-    @PostMapping("/addOrder")
+    @PostMapping("/addOrder") //add to order order options!
     @Operation(description = "add order to data base")
     public ResponseEntity<OrderDTO> addOrder(@Valid @RequestBody OrderDTO orderDTO,
                                              @Parameter(description = "id of client")
@@ -56,17 +56,17 @@ public class OrderController {
     @GetMapping("/getOrder")
     @Operation(description = "find order by parametrs")
     public List<OrderDTO> getOrderByParam(@Parameter(description = "id of order")
-                                              @RequestParam(name = "id") Long id,
+                                              @RequestParam(name = "id",required = false) Long id,
                                           @Parameter(description = "id of client")
-                                          @RequestParam(name = "clientId") Long clientId,
+                                          @RequestParam(name = "clientId",required = false) Long clientId,
                                           @Parameter(description = "id of product")
-                                              @RequestParam(name = "productId") Long productId,
+                                              @RequestParam(name = "productId",required = false) Long productId,
                                           @Parameter(description = "status of order")
-                                              @RequestParam(name = "status") String status,
+                                              @RequestParam(name = "status",required = false) String status,
                                           @Parameter(description = "Max data of order whose you find")
-                                              @RequestParam(name = "maxdata") Timestamp maxData,
+                                              @RequestParam(name = "maxdata",required = false) Timestamp maxData,
                                           @Parameter(description = "Min data od order whose you find")
-                                              @RequestParam(name = "mindata") Timestamp minData){
+                                              @RequestParam(name = "mindata",required = false) Timestamp minData){
        return orderServices.findOrderByParam(id, clientId, productId, status, maxData, minData);
     }
 }

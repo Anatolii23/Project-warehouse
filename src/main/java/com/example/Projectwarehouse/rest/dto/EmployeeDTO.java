@@ -20,7 +20,7 @@ public class EmployeeDTO {
     @NotNull(message = "not be null")
     @NotBlank(message = "not be blank")
     private String name;
-    @Schema(description = "employee type",example = "Poznan Poland",required = true)
+    @Schema(description = "employee type",example = "Worker",required = true)
     @NotNull(message = "not be null")
     @NotBlank(message = "not be blank")
     private String type;
